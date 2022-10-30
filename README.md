@@ -10,7 +10,7 @@
 
 ## Workshops
 
-- [ ] Learn Testing in JavaScript
+- [x] Learn Testing in JavaScript
       <code>learn-testing</code>
 
 - [ ] Learn Unit Testing

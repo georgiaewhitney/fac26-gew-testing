@@ -13,6 +13,142 @@
       function square(x) {
         return x * x;
       }
+
+      // expect a wrong answer in order to show error
+      //console returns error
+
+      const result = square(5);
+      const testResult = 63;
+      if (result !== testResult) {
+        console.error(`testResult did not equal result as expected. Was owed 25 but was returned ${testResult}`);
+      }
+
+      // equal function 
+
+      // function that takes 2 args and checks if they're equal
+      /*
+      Before function rerender
+      const equal = (arg1, arg2) => {
+        if (arg1 === arg2) {
+          console.info(`Success - ${arg1} equals ${arg2}`);
+        } else {
+          console.error(`${arg1} does not equal ${arg2}`);
+        }
+      }
+      */
+
+      /*
+      Amend your equal and notEqual functions so that they take a third optional message argument. Your console.info/console.error should log this message. If there is no message passed in then default to the message you were using before.
+      */
+
+      const equal = (arg1, arg2, msg) => {
+        if (arg1 === arg2) {
+          const defaultMsg = `Expected ${arg1} to equal ${arg2}`;
+          console.info("Success- " + (msg || defaultMsg));
+        } else {
+          const defaultMsg = `Expected ${arg1} to equal ${arg2} but does not`;
+          console.error("Error - " + (msg || defaultMsg));
+        }
+      }
+
+      
+      const firstTest = square(3);
+      const firstTestActual = 11;
+
+      const secondTest = square(3.5);
+      const secondTestActual = 3.5 * 3.5;
+
+      equal(firstTest, firstTestActual);
+      // output: 9 does not equal 11
+
+      equal(secondTest, secondTestActual);
+      //output: Success - 12.25 ewuals 12.25
+
+
+      // notequal function
+
+      const notEqual = (arg1, arg2, msg) => {
+        if (arg1 === arg2) {
+          const defaultMsg = `${arg1} is not equal to ${arg2}`;
+          console.error("Error - " + (msg || defaultMsg));
+        } else {
+          const defaultMsg = `${arg1} is equal to ${arg2}`;
+          console.info("Success - " + (msg || defaultMsg));
+        }
+      }
+
+      const thirdTest = square(3);
+      const thirdTestActual = 10;
+      const thirdTestMatch = 9;
+
+      notEqual(thirdTest, thirdTestActual);
+      // output: Great - results are not equal
+
+      notEqual(thirdTest, thirdTestMatch);
+      // output: Error - results should not be the same. 9 is equal to 9
+
+
+      // separating tests
+
+      // is not necessary to use different variables as they are self-contained
+      // first uses different variables
+      // second set uses more efficient method
+
+      const test = (name, testFunction) => {
+        console.group(name);
+        testFunction();
+        console.groupEnd();
+      };
+
+      test(`Correctly squares integers`, () => {
+        const resultOne = square(4);
+        const resultOneExpected = 16;
+        equal(resultOne, resultOneExpected);
+      });
+
+      test('Correctly squares decimals', () => {
+        const resultTwo = square(3.5);
+        const resultTwoExpected = 12.25;
+        equal(resultTwo, resultTwoExpected);
+      });
+
+      test('Incorrectly Squared', () => {
+        const resultThree = square(5);
+        const resultThreeWrong = 22;
+        notEqual(resultThree, resultThreeWrong);
+      });
+
+      /* 
+      The above functions don't need to have their own variables - they are self-contained within. 
+      They can be rewritten as follows:
+      */
+
+      test(`Correctly squares integers`, () => {
+        const result = square(4);
+        const resultExpected = 16;
+        equal(result, resultExpected);
+      });
+
+      test('Correctly squares decimals', () => {
+        const result = square(3.5);
+        const resultExpected = 12.25;
+        equal(result, resultExpected);
+      });
+
+      test('Incorrectly Squared', () => {
+        const result = square(5);
+        const resultExpected = 22;
+        notEqual(result, resultExpected);
+      });
+
+      // example of reverting to added message parameter, or defaulting as above
+      test('Also correctly squares integers', () => {
+        const result = square(12);
+        const resultExpected = 144;
+        equal(result, resultExpected,`square(12) should equal 144`);
+
+      })
+
     </script>
   </body>
 </html>

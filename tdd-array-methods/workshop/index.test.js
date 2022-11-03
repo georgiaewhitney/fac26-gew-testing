@@ -9,3 +9,5 @@ test("map() should transform each element of the array using the fn argument", (
   const result = map([1], (x) => x + 1);
   equal(result[0], 2);
 });
+
+
